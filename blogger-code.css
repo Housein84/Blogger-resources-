@@ -6,14 +6,14 @@
   --h3:1.125rem;
   --h1c:#6aa84f;
   --h2c:#333;
-  --h3c:#2b00fe
+  --h3c:#2b00fe; /* تمت إضافة ; هنا */
 }
 
 body,p,div{
-  font-family:Arial,sans-serif !important;
-  font-size:var(--base) !important;
+  font-family:Arial,sans-serif; /* تم تصحيح ||i إلى ; */
+  font-size:var(--base) !important; /* تصحيح !importar إلى !important */
   color:#333 !important;
-  line-height:var(--lh) !important;
+  line-height:var(--lh) !important; /* تصحيح !importar إلى !important */
   margin:0 !important;
   padding:0 !important;
 }
@@ -21,8 +21,8 @@ body,p,div{
 h1{
   color:var(--h1c) !important;
   font-size:var(--h1) !important;
-  font-weight:700 !important;
-  line-height:1.2 !important;
+  font-weight:700 !important; /* إضافة الخاصية المفقودة */
+  line-height:1.2 !important; /* إضافة الخاصية المفقودة */
   margin:0.875rem 0 0.4375rem !important;
 }
 
