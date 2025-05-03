@@ -9,86 +9,86 @@
   --h3c:#2b00fe;
 }
 
-/* أنماط عامة */
+/* أنماط أساسية */
 body,p,div{
-  font-family:Arial,sans-serif;
-  font-size:var(--base);
-  color:#333;
-  line-height:var(--lh);
-  margin:0;
-  padding:0;
+  font-family:Arial,sans-serif !important; /* مهم للغاية */
+  font-size:var(--base) !important;
+  color:#333 !important;
+  line-height:var(--lh) !important;
+  margin:0 !important;
+  padding:0 !important;
 }
 
 /* العناوين */
 h1{
-  color:var(--h1c);
-  font-size:var(--h1);
-  font-weight:700;
-  line-height:1.2;
-  margin:0.875rem 0 0.4375rem;
+  color:var(--h1c) !important; /* تجاوز لون القالب */
+  font-size:var(--h1) !important;
+  font-weight:700 !important;
+  line-height:1.2 !important;
+  margin:0.875rem 0 0.4375rem !important;
 }
 
 h2{
-  color:var(--h2c);
-  font-size:var(--h2);
-  font-weight:bold;
+  color:var(--h2c) !important;
+  font-size:var(--h2) !important;
+  font-weight:bold !important;
 }
 
 h3{
-  color:var(--h3c);
-  font-size:var(--h3);
-  font-weight:bold;
+  color:var(--h3c) !important;
+  font-size:var(--h3) !important;
+  font-weight:bold !important;
 }
 
 /* العناصر المخصصة */
 .exw{
-  font-size:1.4375rem;
-  color:red;
-  font-style:normal;
+  font-size:1.4375rem !important;
+  color:red !important;
+  font-style:normal !important;
 }
 
 .ex-ar{
-  font-size:0.9375rem;
-  direction:rtl;
-  text-align:right;
-  color:#999;
-  display:block;
-  margin-left:auto;
+  font-size:0.9375rem !important;
+  direction:rtl !important;
+  text-align:right !important;
+  color:#999 !important;
+  display:block !important;
+  margin-left:auto !important;
 }
 
 .en-ex {
-  font-size:1.4375rem;
-  color:#000;
-  font-weight:normal;
-  display:block;
-  margin-right:0;
-  position:relative;
-  direction:ltr;
-  unicode-bidi:embed;
+  font-size:1.4375rem !important;
+  color:#000 !important;
+  font-weight:normal !important;
+  display:block !important;
+  margin-right:0 !important;
+  position:relative !important;
+  direction:ltr !important;
+  unicode-bidi:embed !important;
 }
 
 .en-ex::before {
-  content: "\2022 ";
-  color:#000;
-  margin-right:0.3125rem;
+  content: "\2022 " !important;
+  color:#000 !important;
+  margin-right:0.3125rem !important;
 }
 
 /* المقالات */
 #article-content h1{
-  font-size:1.44rem;
+  font-size:1.44rem !important;
 }
 
 #article-content h2{
-  font-size:1.22rem;
+  font-size:1.22rem !important;
 }
 
 #article-content h3{
-  font-size:1.11rem;
+  font-size:1.11rem !important;
 }
 
 /* Media Queries */
 @media (min-width:1025px){
-  body{font-size:1.125rem;}
+  body{font-size:1.125rem !important}
 }
 
 @media (max-width:768px){
@@ -101,7 +101,7 @@ h3{
  
   .exw,
   .en-ex {
-    font-size:1.125rem;
+    font-size:1.125rem !important;
   }
 }
 
