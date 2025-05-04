@@ -118,14 +118,19 @@ h4 {
   unicode-bidi: embed !important;
 }
 
-.pr-ar {
+
+/* ----- التنسيقات المُحسَّنة للعناوين العربية ----- */
+.post-body h1 .pr-ar,
+.post-body h2 .pr-ar,
+.post-body h3 .pr-ar {
   direction: rtl !important;
   text-align: right !important;
   color: #999 !important;
-  display: block !important;
-  margin-left: auto !important;
+  font-family: 'Tajawal', sans-serif !important;
+  font-size: 0.9em !important;
+  vertical-align: middle !important;
+  margin-left: 0 !important; /* إزالة الهوامش القديمة */
 }
-
 .hl {
   color: red !important;
 }
