@@ -1,115 +1,168 @@
-:root{
-  --base:1.125rem;
-  --lh:1.5;
-  --h1:1.375rem;
-  --h2:1.25rem;
-  --h3:1.125rem;
-  --h1c:#6aa84f;
-  --h2c:#333;
-  --h3c:#2b00fe;
+:root {
+  --base: 1.125rem;
+  --lh: 1.5;
+  --h1: 1.375rem;
+  --h2: 1.25rem;
+  --h3: 1.125rem;
+  --h1c: #6aa84f;
+  --h2c: #333;
+  --h3c: #2b00fe;
 }
 
-/* أنماط أساسية */
-body,p,div{
-  font-family:Arial,sans-serif !important; /* مهم للغاية */
-  font-size:var(--base) !important;
-  color:#333 !important;
-  line-height:var(--lh) !important;
-  margin:0 !important;
-  padding:0 !important;
+body, p, div {
+  font-family: Arial, sans-serif !important;
+  font-size: var(--base) !important;
+  color: #333 !important;
+  line-height: var(--lh) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* العناوين */
-h1{
-  color:var(--h1c) !important; /* تجاوز لون القالب */
-  font-size:var(--h1) !important;
-  font-weight:700 !important;
-  line-height:1.2 !important;
-  margin:0.875rem 0 0.4375rem !important;
+h1 {
+  color: var(--h1c) !important;
+  font-size: var(--h1) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin: 0.875rem 0 0.4375rem !important;
 }
 
-h2{
-  color:var(--h2c) !important;
-  font-size:var(--h2) !important;
-  font-weight:bold !important;
+h2 {
+  color: var(--h2c) !important;
+  font-size: var(--h2) !important;
+  font-weight: bold !important;
 }
 
-h3{
-  color:var(--h3c) !important;
-  font-size:var(--h3) !important;
-  font-weight:bold !important;
+h3 {
+  color: var(--h3c) !important;
+  font-size: var(--h3) !important;
+  font-weight: bold !important;
 }
 
-/* العناصر المخصصة */
-.exw{
-  font-size:1.4375rem !important;
-  color:red !important;
-  font-style:normal !important;
+h4 {
+  color: var(--h4c) !important;
+  font-size: var(--h4) !important;
+  font-weight: bold !important;
 }
 
-.ex-ar{
-  font-size:0.9375rem !important;
-  direction:rtl !important;
-  text-align:right !important;
-  color:#999 !important;
-  display:block !important;
-  margin-left:auto !important;
+.exw {
+  font-size: 1.4375rem !important;
+  color: red !important;
+  font-style: normal !important;
+}
+
+.ex-ar {
+  font-size: 0.9375rem !important;
+  direction: rtl !important;
+  text-align: right !important;
+  color: #999 !important;
+  display: block !important;
+  margin-left: auto !important;
 }
 
 .en-ex {
-  font-size:1.4375rem !important;
-  color:#000 !important;
-  font-weight:normal !important;
-  display:block !important;
-  margin-right:0 !important;
-  position:relative !important;
-  direction:ltr !important;
-  unicode-bidi:embed !important;
+  font-size: 1.4375rem !important;
+  color: #000 !important;
+  font-weight: normal !important;
+  display: block !important;
+  margin-right: 0 !important;
+  position: relative !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
 }
 
 .en-ex::before {
   content: "\2022 " !important;
-  color:#000 !important;
-  margin-right:0.3125rem !important;
+  color: #000 !important;
+  margin-right: 0.3125rem !important;
 }
 
-/* المقالات */
-#article-content h1{
-  font-size:1.44rem !important;
+.btn-speaker {
+  font-size: var(--base) !important;
+  padding: 0 !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: #333 !important;
+  margin-left: 0.3125rem !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  background: none !important;
+  white-space: nowrap !important;
 }
 
-#article-content h2{
-  font-size:1.22rem !important;
+#article-content {
+  font-size: 1.11rem !important;
+  line-height: 1.6 !important;
 }
 
-#article-content h3{
-  font-size:1.11rem !important;
+#article-content h1 {
+  font-size: 1.44rem !important;
 }
 
-/* Media Queries */
-@media (min-width:1025px){
-  body{font-size:1.125rem !important}
+#article-content h2 {
+  font-size: 1.22rem !important;
 }
 
-@media (max-width:768px){
-  :root{
-    --base:1rem;
-    --h1:1.25rem;
-    --h2:1.125rem;
-    --h3:1.125rem;
+#article-content h3 {
+  font-size: 1.11rem !important;
+}
+
+.container {
+  max-width: 56.25rem !important;
+  margin: auto !important;
+  padding: 0.9375rem !important;
+}
+
+/* تحسين دعم النص ثنائي اللغة */
+[lang="en"] {
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+.pr-ar {
+  direction: rtl !important;
+  text-align: right !important;
+  color: #999 !important;
+  display: block !important;
+  margin-left: auto !important;
+}
+
+.hl {
+  color: red !important;
+}
+
+table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+td, th {
+  border: 1px solid #ddd !important;
+  padding: 8px !important;
+}
+
+@media (min-width: 1025px) {
+  body { font-size: 1.125rem !important; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --base: 1rem !important;
+    --h1: 1.25rem !important;
+    --h2: 1.125rem !important;
+    --h3: 1.125rem !important;
   }
- 
+
   .exw,
   .en-ex {
-    font-size:1.125rem !important;
+    font-size: 1.125rem !important;
   }
 }
 
-@media (max-width:480px){
-  :root{
-    --base:1.25rem;
-    --h1:1.4rem;
-    --h2:1.25rem;
-    --h3:1.25rem;
+@media (max-width: 480px) {
+  :root {
+    --base: 1.25rem !important;
+    --h1: 1.4rem !important;
+    --h2: 1.25rem !important;
+    --h3: 1.25rem !important;
   }
 }
