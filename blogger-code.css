@@ -41,11 +41,14 @@ h3 {
 }
 
 h4 {
+  all: unset !important; /* إعادة تعيين كل التنسيقات */
   color: var(--h4c) !important;
   font-size: var(--h4) !important;
-  font-weight: bold !important;
+  font-weight: 900 !important; /* استخدام وزن أعلى كبديل */
+  font-family: Arial, sans-serif !important;
+  display: block !important;
+  margin: 0.5em 0 !important;
 }
-
 .exw {
   font-size: 1.4375rem !important;
   color: red !important;
