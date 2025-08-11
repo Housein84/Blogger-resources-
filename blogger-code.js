@@ -1,93 +1,69 @@
 document.addEventListener("DOMContentLoaded", function() {
-  let currentUtterance = null;
+  // 1. تفعيل السياق الصوتي مرة واحدة فقط
   let audioContextActivated = false;
-
-  // 1. تفعيل السياق الصوتي - ESSENTIAL
+  
   const activateAudioContext = () => {
-    if (!audioContextActivated) {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (AudioContext) {
-          const audioContext = new AudioContext();
-          audioContext.resume().then(() => {
-            audioContextActivated = true;
-          }).catch(error => {
-            console.error("AudioContext activation failed:", error);
-          });
+    if (audioContextActivated) return;
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) {
+        const audioContext = new AudioContext();
+        audioContext.resume().then(() => {
+          audioContextActivated = true;
+        }).catch(console.error);
+      }
+    } catch (error) {
+      console.error("AudioContext activation failed", error);
+    }
+  };
+
+  // 2. نظام فعال لإدارة الأزرار
+  const speechManager = {
+    currentUtterance: null,
+    currentButton: null,
+    
+    speak: function(text, button) {
+      // إيقاف أي كلام جاري
+      if (this.currentUtterance && speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        if (this.currentButton) {
+          this.currentButton.innerHTML = "🔊";
         }
+      }
+      
+      // تفعيل السياق الصوتي إذا لم يكن مفعلًا
+      if (!audioContextActivated) activateAudioContext();
+      
+      try {
+        // إنشاء كلام جديد
+        this.currentUtterance = new SpeechSynthesisUtterance(text);
+        this.currentUtterance.lang = "en-US";
+        this.currentButton = button;
+        button.innerHTML = "⏹";
+        
+        this.currentUtterance.onend = this.currentUtterance.onerror = () => {
+          button.innerHTML = "🔊";
+          this.currentUtterance = null;
+          this.currentButton = null;
+        };
+        
+        speechSynthesis.speak(this.currentUtterance);
       } catch (error) {
-        console.error("AudioContext error:", error);
+        console.error("Speech error", error);
+        button.innerHTML = "🔊";
       }
     }
   };
 
-  // تفعيل عند أول نقر في الصفحة
-  document.addEventListener('click', function initAudio() {
-    activateAudioContext();
-    document.removeEventListener('click', initAudio);
-  }, { once: true });
-
-  // 2. نظام النطق مع التحسينات
-  document.addEventListener("click", function(e) {
-    const button = e.target.closest(".btn-speaker");
-    if (!button) return;
-    
-    e.preventDefault();
-
-    // تأكد من تفعيل الصوت
-    activateAudioContext();
-
-    const text = button.getAttribute("data-text");
-
-    if (currentUtterance && speechSynthesis.speaking) {
-      speechSynthesis.cancel();
-      button.innerHTML = "🔊";
-      currentUtterance = null;
-      return;
-    }
-
-    if (window.speechSynthesis) {
-      // إضافة تأخير بسيط للتأكد من تفعيل الصوت
-      setTimeout(() => {
-        try {
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.lang = "en-US";
-
-          utterance.onstart = () => {
-            button.innerHTML = "⏹";
-            currentUtterance = utterance;
-          };
-
-          utterance.onend = () => {
-            button.innerHTML = "🔊";
-            currentUtterance = null;
-          };
-          
-          // 3. معالجة الأخطاء - ESSENTIAL
-          utterance.onerror = (event) => {
-            console.error("Speech error:", event.error);
-            button.innerHTML = "🔊";
-            currentUtterance = null;
-            
-            // رسائل تنبيه بالإنجليزية
-            if (event.error === 'interrupted') {
-              alert('Audio playback blocked. Please enable sound permissions in browser settings.');
-            } else if (event.error === 'synthesis-failed') {
-              alert('Speech synthesis failed. Try again later.');
-            } else {
-              alert('Speech error: ' + event.error);
-            }
-          };
-
-          speechSynthesis.speak(utterance);
-        } catch (error) {
-          console.error("Speech system error:", error);
-          alert("Speech system error: " + error.message);
-          button.innerHTML = "🔇";
-        }
-      }, 100); // تأخير 100ms
-    } else {
-      alert("Text-to-speech is not supported in your browser");
-    }
+  // 3. إعداد الأزرار بكفاءة
+  document.querySelectorAll(".btn-speaker").forEach(button => {
+    button.addEventListener("click", function() {
+      const text = this.getAttribute("data-text");
+      speechManager.speak(text, this);
+    });
   });
+
+  // 4. تفعيل الصوت عند أول تفاعل
+  document.addEventListener('click', activateAudioContext, { once: true });
+  document.addEventListener('touchstart', activateAudioContext, { once: true });
 });
